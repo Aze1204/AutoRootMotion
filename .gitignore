@@ -1,0 +1,11 @@
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+
+.vs/
+.vscode/
+*.sln
+*.suo
+*.user
+.DS_Store

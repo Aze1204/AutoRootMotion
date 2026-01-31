@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "AutoRootMotion",
+	"Description": "Automatically detects root motion on imported animation assets and applies recommended Root Motion settings.",
+	"Category": "AnimationTool",
+	"CreatedBy": "Aze",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "AutoRootMotion",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
