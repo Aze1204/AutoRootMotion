@@ -1,4 +1,6 @@
 #include "AutoRootMotionModule.h"
+
+#include "AutoRMAnimSequenceThumbnailRenderer.h"
 #include "AutoRootMotionEditorUI.h"
 #include "AutoRootMotionRules.h"
 #include "AutoRootMotionSettings.h"
@@ -6,11 +8,13 @@
 
 #include "Logging/LogMacros.h"
 #include "Modules/ModuleManager.h"
+#include "ThumbnailRendering/ThumbnailManager.h"
 IMPLEMENT_MODULE(FAutoRootMotionModule, AutoRootMotion)
 #define LOCTEXT_NAMESPACE "AutoRootMotion"
 void FAutoRootMotionModule::StartupModule()
 {
 	FAutoRootMotionEditorUI::Register();
+	UThumbnailManager& TM = UThumbnailManager::Get();
 	IModuleInterface::StartupModule();
 	
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
@@ -22,7 +26,10 @@ void FAutoRootMotionModule::StartupModule()
 		);
 	}
 	FEditorDelegates::OnAssetPostImport.AddRaw(this, &FAutoRootMotionModule::OnAssetPostImport);
-	
+	UThumbnailManager::Get().RegisterCustomRenderer(
+		UAnimSequence::StaticClass(),
+		UAutoRMAnimSequenceThumbnailRenderer::StaticClass()
+	);
 }
 
 void FAutoRootMotionModule::ShutdownModule()
@@ -49,6 +56,16 @@ void FAutoRootMotionModule::OnAssetPostImport(UFactory* InFactory, UObject* InCr
 			Anim->bEnableRootMotion = true;
 			Anim->MarkPackageDirty();
 		}
+	}
+	
+	if (!UThumbnailManager::TryGet())
+		return;
+
+	UThumbnailManager& TM = UThumbnailManager::Get();
+
+	if (UThumbnailManager::TryGet())
+	{
+		UThumbnailManager::Get().UnregisterCustomRenderer(UAnimSequence::StaticClass());
 	}
 }
 #undef LOCTEXT_NAMESPACE

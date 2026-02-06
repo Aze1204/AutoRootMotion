@@ -212,10 +212,10 @@ void FAutoRootMotionEditorUI::RegisterMenus()
     UToolMenu* Menu = ToolMenus->ExtendMenu("ContentBrowser.AssetContextMenu");
     if (!Menu) return;
 
-    FToolMenuSection& Section = Menu->FindOrAddSection(
-        "AutoRootMotion",
-        FText::FromString("AutoRootMotion")
-    );
+	FToolMenuSection& Section = Menu->FindOrAddSection(
+		"AutoRootMotion",
+		LOCTEXT("AutoRootMotion_Section", "AutoRootMotion")
+	);
 
     Section.AddDynamicEntry(
         "AutoRootMotion_Dynamic",
@@ -251,7 +251,7 @@ void FAutoRootMotionEditorUI::RegisterMenus()
         	InSection.AddMenuEntry(
 				"AutoRootMotion_Disable",
 				LOCTEXT("AutoRootMotion_Disable", "Disable Root Motion"),
-				LOCTEXT("AutoRootMotion_DisableTooltip", "	Force disable root motion for selected animations"),
+				LOCTEXT("AutoRootMotion_DisableTooltip", "Force disable root motion for selected animations"),
 				FSlateIcon(),
 				FToolMenuExecuteAction::CreateStatic([](const FToolMenuContext& MenuContext)
 				{

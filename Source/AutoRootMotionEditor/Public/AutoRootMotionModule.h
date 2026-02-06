@@ -13,4 +13,5 @@ public:
 	virtual void ShutdownModule() override;
 	
 	void OnAssetPostImport(UFactory* InFactory, UObject* InCreatedObject);
+	static UClass* GPrevAnimSeqThumbRenderer;
 };
