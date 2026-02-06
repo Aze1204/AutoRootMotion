@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0",
+	"VersionName": "1.1",
 	"FriendlyName": "AutoRootMotion",
 	"Description": "Automatically detects root motion on imported animation assets and applies recommended Root Motion settings.",
 	"Category": "AnimationTool",
